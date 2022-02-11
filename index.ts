@@ -2088,9 +2088,6 @@ export function ytdlpSync(url: string, options: Options = {}): string {
 	return execSync(ytdlpPath + " " + url + " " + formatOptions(options).join(" ")).toString();
 }
 
-export function ytdlpStream(url: string, options: Options = {}): Promise<ReturnType<typeof spawn>> {
-	return new Promise((resolve, reject) => {
-		const child = spawn(ytdlpPath, [url, ...formatOptions(options)]);
-		resolve(child);
-	});
+export function ytdlpStream(url: string, options: Options = {}): ReturnType<typeof spawn> {
+	return spawn(ytdlpPath, [url, ...formatOptions(options)]);
 }

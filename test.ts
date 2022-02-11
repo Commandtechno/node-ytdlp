@@ -13,9 +13,8 @@ ytdlp(url, options)
   })
   .then(() => {
     console.log("stream");
-    ytdlpStream(url, options).then(res => {
-      res.stdout.on("data", data => console.log(data.toString().trim()));
-      res.stderr.on("data", data => console.log(data.toString().trim()));
-      res.on("close", code => console.log(`child process exited with code ${code}`));
-    });
+    const stream = ytdlpStream(url, options);
+    stream.stdout.on("data", data => console.log(data.toString().trim()));
+    stream.stderr.on("data", data => console.log(data.toString().trim()));
+    stream.on("close", code => console.log(`child process exited with code ${code}`));
   });

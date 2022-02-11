@@ -81,11 +81,8 @@ export default function (options: Option[]) {
 
   ts += "\n";
   ts +=
-    "export function ytdlpStream(url: string, options: Options = {}): Promise<ReturnType<typeof spawn>> {\n";
-  ts += "\treturn new Promise((resolve, reject) => {\n";
-  ts += "\t\tconst child = spawn(ytdlpPath, [url, ...formatOptions(options)]);\n";
-  ts += "\t\tresolve(child);\n";
-  ts += "\t});\n";
+    "export function ytdlpStream(url: string, options: Options = {}): ReturnType<typeof spawn> {\n";
+  ts += "\treturn spawn(ytdlpPath, [url, ...formatOptions(options)]);\n";
   ts += "}\n";
 
   return ts;
